@@ -18,6 +18,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     private ServerSocketThread server;
     private final DateFormat DATE_FORMAT = new SimpleDateFormat("[HH:mm:ss] ");
     private ChatServerListener listener;
+    private GarbageThread garbageThread;
     private Vector<SocketThread> clients;
 
     public ChatServer(ChatServerListener listener) {
@@ -39,7 +40,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
             putLog("Server is not running");
         } else {
             server.interrupt();
-
+            garbageThread.interrupt();
         }
     }
 

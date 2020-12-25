@@ -9,14 +9,14 @@ import java.util.Date;
 public class SocketThread extends Thread {
     private final SocketThreadListener listener;
     private final Socket socket;
-
+    private final Date dateTimeStartThread;
     private DataOutputStream out;
 
     public SocketThread(SocketThreadListener listener, String name, Socket socket) {
         super(name);
         this.socket = socket;
         this.listener = listener;
-
+        this.dateTimeStartThread = new Date();
         start();
     }
 
@@ -61,5 +61,7 @@ public class SocketThread extends Thread {
         }
     }
 
-
+    public Date getDateTimeStartThread() {
+        return dateTimeStartThread;
+    }
 }
